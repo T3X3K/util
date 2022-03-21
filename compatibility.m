@@ -2,7 +2,7 @@ function lambdas = compatibility(v1,v2,name)
 % function to calculate compatibility betwwen numbers
 % v1 must contain the values, while vw their uncertainty (standard deviation)
 % a result less than 1 means very good, less than 2 but more than 1 good,
-% less than 3 but more than 2 acceptable, more than 4 incompatible
+% less than 3 but more than 2 acceptable, more than 3 incompatible
 % the third input is the name in which the results are going to be printed
 % in latex format
 
