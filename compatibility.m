@@ -7,11 +7,12 @@ function lambdas = compatibility(v1,v2,name)
 % in latex format
 
     lambdas = [];
+    file = fopen(name, "w");
 
     for i = 1:(size(v1,1)-1)
         for j = (i+1):size(v1,1)
-            abs(v1(i) - v(j)) / sqrt(v2(i)^2 + v2(j)^2)
-            file = fopen(name, "\lambda_{%i%i}: %f", j, i,)
+            lambdas(end + 1) = abs(v1(i) - v1(j)) / sqrt(v2(i)^2 + v2(j)^2);
+            fprintf(file, "\\lambda_{%i%i}: %f", j, i, lambdas(end));
         end
     end
 
