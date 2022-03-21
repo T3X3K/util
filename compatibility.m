@@ -12,7 +12,7 @@ function lambdas = compatibility(v1,v2,name)
     for i = 1:(size(v1,1)-1)
         for j = (i+1):size(v1,1)
             lambdas(end + 1) = abs(v1(i) - v1(j)) / sqrt(v2(i)^2 + v2(j)^2);
-            fprintf(file, "\\lambda_{%i%i}: %f", j, i, lambdas(end));
+            fprintf(file, "\\lambda_{%i%i}: %f \\\\ \n", j, i, lambdas(end));
         end
     end
 
