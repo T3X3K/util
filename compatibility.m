@@ -1,4 +1,4 @@
-function lambdas = compatibility(v1,v2,name)
+function lambdas = compatibility(v1,v2,name="")
 % function to calculate compatibility betwwen numbers
 % v1 must contain the values, while vw their uncertainty (standard deviation)
 % a result less than 1 means very good, less than 2 but more than 1 good,
