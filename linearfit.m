@@ -12,20 +12,20 @@ function [a, b, erra, errb, s] = linearfit(x, y, err)
     errb = sum(1./(err.^2))/del;
     
     s.res = y - a - b*x;
-    s.chi = chi2gof(res);
+    s.chi = chi2gof(s.res);
     
     s.gdl = size(x,1) - 2;
     
     s.r = corrcoef(x,y);
-    s.t = r_lib(1,2)*sqrt(gdl_lib/(1-(r_lib(1,2)^2)));
+    s.t = s.r(1,2)*sqrt(s.gdl/(1-(s.r(1,2)^2)));
     
-    s.sigma_post = sqrt(sum((y-(a_lib+(lambda2.*x))).^2)/gdl_lib);
+    s.sigma_post = sqrt(sum((y-(a+(b.*x))).^2)/s.gdl);
     
     s.delta=size(x,1)*sum(x.^2)-(sum(x)^2);
-    s.a_ric = (sum(x.^2)*sum(y) - sum(x)*sum(x.*y))/delta;
-    s.erra_ric = sigma_post_lib*sqrt(sum(x.^2)/delta);
-    s.b_ric = (size(x,1)*sum(x.*y)-sum(x)*sum(y))/delta;
-    s.errb_ric = s.sigma_post*sqrt(size(x,1)/delta);
+    s.a_ric = (sum(x.^2)*sum(y) - sum(x)*sum(x.*y))/s.delta;
+    s.erra_ric = s.sigma_post*sqrt(sum(x.^2)/s.delta);
+    s.b_ric = (size(x,1)*sum(x.*y)-sum(x)*sum(y))/s.delta;
+    s.errb_ric = s.sigma_post*sqrt(size(x,1)/s.delta);
     
     return
 end
