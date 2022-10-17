@@ -1,4 +1,4 @@
-funztion summ = psum(v)
+function summ = psum(v)
 % insert a matrix and it will give 
 % you the reciprocal of the
 % sum of the reciprocal 
