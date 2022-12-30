@@ -26,6 +26,53 @@ function [a, b, erra, errb, s] = linearfit(x, y, err)
     s.erra_ric = s.sigma_post*sqrt(sum(x.^2)/s.delta);
     s.b_ric = (size(x,1)*sum(x.*y)-sum(x)*sum(y))/s.delta;
     s.errb_ric = s.sigma_post*sqrt(size(x,1)/s.delta);
-    
-    return
+   
+	
+
+	%%% RìGrafico Fit
+    %me','Figure','Color',[1 1 1],'OuterPosition',[964 501 576 513]);
+
+	% Create axes
+	axes1 = axes;
+	hold(axes1,'on');
+
+	% Create errorbar
+	errorbar(x,y,err,'DisplayName','Dati','LineStyle','none','LineWidth',1.2,...
+	    'Color',[1 0 0]);
+
+	% Create plot
+	xr = linespace(x(1)-0.05*(x(end)-x(1)),x(end)+0.05*(x(end)-x(1)),round(x(end)-x(1))*100);
+	plot(xr,a+b*xr,'DisplayName','Retta Interpolante','Color',[0 1 0]);
+
+	hold(axes1,'off');
+	% Set the remaining axes properties
+	set(axes1,'XGrid','on','XMinorGrid','on','XMinorTick','on','YGrid','on',...
+	    'YMinorGrid','on','YMinorTick','on');
+	% Create legend
+	legend(axes1,'show');
+
+	%%% Grafico Residui 
+	figure('Name','Figure','Color',[1 1 1],'OuterPosition',[672 538 576 513]);
+
+	% Create axes
+	axes1 = axes;
+	hold(axes1,'on');
+
+	% Create errorbar
+	errorbar(x,s.res,err,'DisplayName','Residui','LineStyle','none',...
+	    'LineWidth',1.2,...
+		    'Color',[1 0 0]);
+
+	% Uncomment the following line to preserve the X-limits of the axes
+	% xlim(axes1,[0.5 6.5]);
+	box(axes1,'on');
+	hold(axes1,'off');
+	% Set the remaining axes properties
+	set(axes1,'XGrid','on','XMinorGrid','on','YGrid','on','YMinorGrid','on');
+	% Create legend
+	legend1 = legend(axes1,'show');
+	set(legend1,...
+	    'Position',[0.730952382868244 0.850793651928977 0.164285712103759 0.0476190464837211]);
+
+	return
 end
