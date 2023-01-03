@@ -8,8 +8,8 @@ function [a, b, erra, errb, s] = linearfit(x, y, err)
     del = sum(1./(err.^2))*sum((x./err).^2)-sum(x./(err.^2))^2;
     a = (sum(y./(err.^2))*transpose(x./err)*(x./err) - sum(x./(err.^2))*sum(x.*y./(err.^2)))/del;
     b = (sum(1./(err.^2))*sum(x.*y./(err.^2)) - sum(x./(err.^2))*sum(y./(err.^2)))/del;
-    erra = sum((x.^2)./(err.^2))/del;
-    errb = sum(1./(err.^2))/del;
+    erra = sqrt(sum((x.^2)./(err.^2))/del);
+    errb = sqrt(sum(1./(err.^2))/del);
     
     s.res = y - a - b*x;
     s.chi = chi2gof(s.res);
